@@ -1,0 +1,27 @@
+{
+  "name": "graphql-server",
+  "version": "1.0.0",
+  "description": "NodeJS based on server in order to implement the GraphQL runtime.",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "NodeJS",
+    "GraphQL",
+    "Javascript",
+    "API"
+  ],
+  "author": "Dailos Rafael Díaz Lara <ddialar@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "json-server": "^0.10.1",
+    "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "axios": "^0.16.2",
+    "express": "^4.15.3",
+    "express-graphql": "^0.6.6",
+    "graphql": "^0.10.3"
+  }
+}
