@@ -1,24 +1,23 @@
 query {
-  actors(id: 1) {
-    name
-  }
-}
-
-query {
-  actors {
+  allActors {
     id
     name
+    height
+    country
   }
 }
 
 query {
-  actors(id: [12, 13]) {
+  actorsById(id: 1) {
+    id
     name
+    height
+    country
   }
 }
 
 query {
-  actors(id: 1) {
+  actorsById(id: 1) {
     id
     name
     movies {
@@ -29,7 +28,7 @@ query {
 }
 
 query {
-  actors(id: [1]) {
+  actorsById(id: [1]) {
     name
     movies {
       title

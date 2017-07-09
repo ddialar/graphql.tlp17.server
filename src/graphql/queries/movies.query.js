@@ -1,30 +1,30 @@
 import {
+    GraphQLInt,
     GraphQLList,
-    GraphQLInt
 } from 'graphql';
 
-import GenreType from '../models/genre.type';
-import * as GenresService from '../services/genres.service';
+import MovieType from '../models/movie.type';
+import * as MoviesService from '../services/movies.service';
 
 import * as utils from '../shared/utils';
 
 var allQuery = {
-    type: new GraphQLList(GenreType),
-    description: 'List of all stored genres.',
+    type: new GraphQLList(MovieType),
+    description: 'List of all stored movies.',
     resolve: (parentValues, args) => {
-        return GenresService.getGenresData();
+        return MoviesService.getMoviesData();
     }
 };
 
 var byIdQuery = {
-    type: new GraphQLList(GenreType),
-    description: 'List of all stored genres.',
+    type: new GraphQLList(MovieType),
+    description: 'List of all stored movies.',
     args: {
         id: { type: new GraphQLList(GraphQLInt) }
     },
     resolve: (parentValues, args) => {
         let queryParams = utils.createQueryParamsString(args.id, 'id');
-        return GenresService.getGenresData(queryParams);
+        return MoviesService.getMoviesData(queryParams);
     }
 };
 
