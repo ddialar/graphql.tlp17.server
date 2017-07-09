@@ -1,9 +1,11 @@
 import axios from 'axios';
 
+import * as MoviesService from './movies.service';
+import * as DirectorsService from './directors.service';
 import * as CommonService from './common.service';
 
 var addDirectorMovies = (directorId, newMoviesIds) => {
-    return getMovieDirectorRelationshipsByDirectorId(directorId)
+    return _getMovieDirectorRelationshipsByDirectorId(directorId)
         .then((relationships) => {
             let persistedMovieIds = relationships
                 .map((movieDirectorPair) => {
@@ -33,7 +35,7 @@ var addDirectorMovies = (directorId, newMoviesIds) => {
 };
 
 var addMovieDirectors = (movieId, directorsIds) => {
-    return getMovieDirectorRelationshipsByMovieId(movieId)
+    return _getMovieDirectorRelationshipsByMovieId(movieId)
         .then((relationships) => {
             let persistedDirectorIds = relationships
                 .map((directorMoviePair) => {
@@ -68,7 +70,7 @@ var _persistNewMovieDirectorRelationships = (relationshipsToBePersisted) => {
 };
 
 var deleteDirectorMovies = (directorId, moviesIds) => {
-    return getMovieDirectorRelationshipsByDirectorId(directorId)
+    return _getMovieDirectorRelationshipsByDirectorId(directorId)
         .then((relationships) => {
             let relationshipIdsToBeDeleted = relationships
                 .filter((movieDirectorPair) => {
@@ -96,7 +98,27 @@ var _deleteMovieDirectorRelationships = (relationshipIdsToBeDeleted) => {
     return CommonService.runAllAsyncRequests(asyncRequests, 'Deleting movie-director relationships');
 };
 
-var getMovieDirectorRelationshipsByMovieId = (movieId) => {
+var getMoviesDataByDirectorId = (directorId) => {
+    return _getMovieDirectorRelationshipsByDirectorId(directorId)
+        .then((relationships) => {
+            return MoviesService.getRelatedMovies(relationships);
+        })
+        .catch((error) => {
+            return error;
+        });
+};
+
+var getDirectorsDataByMovieId = (movieId) => {
+    return _getMovieDirectorRelationshipsByMovieId(movieId)
+        .then((relationships) => {
+            return DirectorsService.getDirectorsDataFromMovieRelationships(relationships);
+        })
+        .catch((error) => {
+            return error;
+        });
+};
+
+var _getMovieDirectorRelationshipsByMovieId = (movieId) => {
     return axios
         .get(`http://localhost:3000/movies_directors?movieId=${movieId}`)
         .then(response => response.data)
@@ -106,7 +128,7 @@ var getMovieDirectorRelationshipsByMovieId = (movieId) => {
         });
 };
 
-var getMovieDirectorRelationshipsByDirectorId = (directorId) => {
+var _getMovieDirectorRelationshipsByDirectorId = (directorId) => {
     return new Promise((resolve, reject) => {
         axios
             .get(`http://localhost:3000/movies_directors?directorId=${directorId}`)
@@ -124,6 +146,6 @@ export {
     addDirectorMovies,
     addMovieDirectors,
     deleteDirectorMovies,
-    getMovieDirectorRelationshipsByMovieId,
-    getMovieDirectorRelationshipsByDirectorId
+    getMoviesDataByDirectorId,
+    getDirectorsDataByMovieId
 };
