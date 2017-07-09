@@ -69,7 +69,7 @@ Para asegurar el correcto avance de todas las personas asistentes al taller, el 
 De esta forma, a medida que vayamos avanzando en el proyecto, iremos guardando los cambios que hayamos realizado
 
 ```sh
-$ git add -a
+$ git add -A
 $ git commit -m "el comentario que tu quieras"
 ```
 
