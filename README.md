@@ -62,7 +62,26 @@ Empezaremos el taller con una breve presentación que nos permitirá dos cosas:
 1. Exponer los conceptos básicos de GraphQL con los que vamos a trabajar.
 2. Permitir a aquellas personas que no hayan podido configurar el entorno de trabajo, hacerlo antes de empezar a programar.
 
-Una vez concluída la presentación inicial, comenzaremos a trabajar en el código el cual, estará estructurado de la siguiente manera:
+Una vez concluída la presentación inicial, comenzaremos a trabajar en el código.
+
+Para asegurar el correcto avance de todas las personas asistentes al taller, el repositorio está organizado en ramas de Git. Estas ramas estarán identificadas como `rama-n` donde `n` indicará el número correspondiente a la fase del proyecto en la que vamos a estar trabajando.
+
+De esta forma, a medida que vayamos avanzando en el proyecto, iremos guardando los cambios que hayamos realizado
+
+```sh
+$ git add -a
+$ git commit -m "el comentario que tu quieras"
+```
+
+y a continuación, cambiaremos de rama 
+
+```sh
+$ git checkout rama-n
+```
+
+de manera que al comienzo de cada nueva fase del taller, todos y todas partamos desde el mismo punto.
+
+Para concluir, el proyecto estará estructurado de la siguiente manera:
 
 ![Project structure](img/project-structure.png)
 
@@ -107,3 +126,7 @@ Dado que uno de los objetivos a la hora de implementar GraphQL en nuestros siste
 En este directorio encontraremos código compartido en múltiples puntos a los largo del proyecto.
 
 **NOTA:** Debido a que esta parte del proyecto es independiente de GraphQL, durante el taller no se va a modificar el contenido de los archivos alojados en este directorio.
+
+Esto es todo por el momento.
+
+Espero verte en el taller el día **19/06 @ 10:00h**.
