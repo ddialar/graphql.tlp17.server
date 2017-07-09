@@ -1,23 +1,19 @@
 query {
-  director(id: 1) {
+  allDirectors {
+    id
     name
   }
 }
 
 query {
-  directors {
+  directorsById(id: [3, 4]) {
+    id
     name
   }
 }
 
 query {
-  directors(id: [3, 4]) {
-    name
-  }
-}
-
-query {
-  directors(id: [1]) {
+  directorsById(id: [1]) {
     name
     movies {
       title

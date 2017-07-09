@@ -1,9 +1,12 @@
-/*
-En este archivo implementaremos el "schema" que utilizará GraphQL para poder gestionar los datos de nuestra aplicación.
-*/
-
-import axios from 'axios';
 import { GraphQLSchema } from 'graphql';
 
-export default new GraphQLSchema({});
+import RootQueryType from './queries/root.query';
+
+// Ahora que ya tenemos nuestro primer Objeto Tipo y su correspondiente
+// consulta, ha llegado el momento de cumplimentar el shcema que usará
+// GrpahQL en nuestro proyecto.
+
+export default new GraphQLSchema({
+    query: 'Definir el RootQuery para el esquema actual'
+});
 
