@@ -1,6 +1,7 @@
 import { GraphQLObjectType } from 'graphql';
 
 import * as DirectorsQuery from './directors.query';
+import * as GenresQuery from './genres.query';
 
 var RootQueryType = new GraphQLObjectType({
     name: 'RootQuery',
