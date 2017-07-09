@@ -6,7 +6,7 @@ var RootQueryType = new GraphQLObjectType({
     name: 'RootQuery',
     fields: () => ({
         allDirectors: DirectorsQuery.allQuery,
-        // directorsById: DirectorsQuery.byIdQuery,
+        directorsById: DirectorsQuery.byIdQuery,
 
         // allWriters: WritersQuery.allQuery,
         // writersById: WritersQuery.byIdQuery,

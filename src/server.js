@@ -5,14 +5,11 @@ import schema from './graphql/schema';
 
 const app = express();
 
-// Como paso final antes de poder realizar nuestra primera consulta,
-// debemos decirle al middleware de GrpahQL qué shcema vamos a usar.
-
 app.use(
     '/graphql',
     expressGraphQL({
         graphiql: true,
-        schema: 'Añadir el shcema del proyecto aquí'
+        schema: schema
     })
 );
 
