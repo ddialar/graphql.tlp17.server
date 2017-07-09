@@ -1,9 +1,11 @@
 import axios from 'axios';
 
+import * as MoviesService from './movies.service';
+import * as ActorsService from './actors.service';
 import * as CommonService from './common.service';
 
 var addActorMovies = (actorId, newMoviesIds) => {
-    return getMovieActorRelationshipsByActorId(actorId)
+    return _getMovieActorRelationshipsByActorId(actorId)
         .then((relationships) => {
             let persistedMovieIds = relationships
                 .map((movieActorPair) => {
@@ -33,7 +35,7 @@ var addActorMovies = (actorId, newMoviesIds) => {
 };
 
 var addMovieActors = (movieId, newActorsIds) => {
-    return getMovieActorRelationshipsByMovieId(movieId)
+    return _getMovieActorRelationshipsByMovieId(movieId)
         .then((relationships) => {
             let persistedActorIds = relationships
                 .map((movieActorPair) => {
@@ -68,7 +70,7 @@ var _persistNewMovieActorRelationships = (relationshipsToBePersisted) => {
 };
 
 var deleteActorMovies = (actorId, moviesIds) => {
-    return getMovieActorRelationshipsByActorId(actorId)
+    return _getMovieActorRelationshipsByActorId(actorId)
         .then((relationships) => {
             let relationshipIdsToBeDeleted = relationships
                 .filter((movieActorPair) => {
@@ -96,7 +98,27 @@ var _deleteMovieActorRelationships = (relationshipIdsToBeDeleted) => {
     return CommonService.runAllAsyncRequests(asyncRequests, 'Deleting movie-actor relationships');
 };
 
-var getMovieActorRelationshipsByMovieId = (movieId) => {
+var getMoviesDataByActorId = (actorId) => {
+    return _getMovieActorRelationshipsByActorId(actorId)
+        .then((relationships) => {
+            return MoviesService.getRelatedMovies(relationships);
+        })
+        .catch((error) => {
+            return error;
+        });
+};
+
+var getActorsDataByMovieId = (movieId) => {
+    return _getMovieActorRelationshipsByMovieId(movieId)
+        .then((relationships) => {
+            return ActorsService.getActorsDataFromMovieRelationships(relationships);
+        })
+        .catch((error) => {
+            return error;
+        });
+};
+
+var _getMovieActorRelationshipsByMovieId = (movieId) => {
     return axios
         .get(`http://localhost:3000/movies_actors?movieId=${movieId}`)
         .then(response => response.data)
@@ -106,7 +128,7 @@ var getMovieActorRelationshipsByMovieId = (movieId) => {
         });
 };
 
-var getMovieActorRelationshipsByActorId = (actorId) => {
+var _getMovieActorRelationshipsByActorId = (actorId) => {
     return new Promise((resolve, reject) => {
         axios
             .get(`http://localhost:3000/movies_actors?actorId=${actorId}`)
@@ -124,6 +146,6 @@ export {
     addActorMovies,
     addMovieActors,
     deleteActorMovies,
-    getMovieActorRelationshipsByMovieId,
-    getMovieActorRelationshipsByActorId
+    getMoviesDataByActorId,
+    getActorsDataByMovieId
 };
