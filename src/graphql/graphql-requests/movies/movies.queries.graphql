@@ -1,0 +1,66 @@
+query {
+  allMovies {
+    title
+  }
+}
+
+query {
+  moviesById(id: [1, 2]) {
+    title
+  }
+}
+
+query {
+  moviesById(id: [1]) {
+    title
+    description
+    poster_image
+    duration
+    rating
+    classification
+    year
+  }
+}
+
+query {
+  moviesById(id: [1]) {
+    title
+    directors {
+      name
+    }
+  }
+}
+
+query {
+  moviesById(id: [1]) {
+    title
+    writers {
+      name
+    }
+  }
+}
+
+query {
+  moviesById(id: [1]) {
+    title
+    actors {
+      name
+    }
+  }
+}
+
+query {
+  moviesById(id: [1]) {
+    title
+    genres {
+      name
+    }
+  }
+}
+
+query {
+  moviesById(id: [1]) {
+    title
+    genresAsArray
+  }
+}

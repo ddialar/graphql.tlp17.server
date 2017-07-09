@@ -1,0 +1,50 @@
+query {
+  actors(id: 1) {
+    name
+  }
+}
+
+query {
+  actors {
+    id
+    name
+  }
+}
+
+query {
+  actors(id: [12, 13]) {
+    name
+  }
+}
+
+query {
+  actors(id: 1) {
+    id
+    name
+    movies {
+      id
+      title
+    }
+  }
+}
+
+query {
+  actors(id: [1]) {
+    name
+    movies {
+      title
+      description
+      poster_image
+      duration
+      rating
+      classification
+      year
+      actors {
+        name
+      }
+      genres {
+        name
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+query {
+  genre(id: 1) {
+    name
+  }
+}
+
+query {
+  genres {
+    id
+    name
+  }
+}
+
+query {
+  genres(id: [1, 7]) {
+    name
+  }
+}
+
+query {
+  genres(id: [7]) {
+    name
+    movies {
+      title
+      poster_image
+      duration
+      rating
+      classification
+      year
+      genres {
+        name
+      }
+    }
+  }
+}

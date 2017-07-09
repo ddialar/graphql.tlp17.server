@@ -1,0 +1,48 @@
+mutation {
+  addWriter(name: "Writer Test") {
+    id
+    name
+  }
+}
+
+mutation {
+  addWriter(name: "Writer Test", movies: [1,2,3]) {
+    id
+    name
+  }
+}
+
+mutation {
+  updateWriter(id: 14, name: "Pepito") {
+    id
+    name
+  }
+}
+
+mutation {
+  deleteWriter(id: 14) {
+    id
+  }
+}
+
+mutation {
+  addWriterMovies(id: 14, movies: [2, 3, 4]) {
+    id
+    name
+    movies {
+      id
+      title
+    }
+  }
+}
+
+mutation {
+  deleteWriterMovies(id: 14, movies: [2, 3, 4]) {
+    id
+    name
+    movies {
+      id
+      title
+    }
+  }
+}

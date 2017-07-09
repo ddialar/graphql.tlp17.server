@@ -1,0 +1,42 @@
+query {
+  writer(id: 1) {
+    name
+  }
+}
+
+query {
+  writers {
+    id
+    name
+  }
+}
+
+query {
+  writers(id: [12, 13]) {
+    name
+  }
+}
+
+query {
+  writers(id: [2]) {
+    name
+    movies {
+      title
+      description
+      poster_image
+      duration
+      rating
+      classification
+      year
+      writers {
+        name
+      }
+      actors {
+        name
+      }
+      genres {
+        name
+      }
+    }
+  }
+}

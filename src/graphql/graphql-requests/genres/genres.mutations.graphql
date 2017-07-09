@@ -1,0 +1,49 @@
+mutation {
+  addGenre(name: "Terror") {
+    id
+    name
+  }
+}
+
+mutation {
+  addGenre(name: "Terror", movies: [1,2]) {
+    id
+    name
+  }
+}
+
+mutation {
+  updateGenre(id: 10, name: "Gore") {
+    id
+    name
+  }
+}
+
+mutation {
+  deleteGenre(id: 10) {
+    id
+    name
+  }
+}
+
+mutation {
+  addMoviesToGenre(id: 10, movies: [2, 3, 4]) {
+    id
+    name
+    movies {
+      id
+      title
+    }
+  }
+}
+
+mutation {
+  deleteGenreMovies(id: 10, movies: [2, 3, 4]) {
+    id
+    name
+    movies {
+      id
+      title
+    }
+  }
+}

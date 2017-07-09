@@ -1,0 +1,49 @@
+mutation {
+  addDirector(name: "Director Test") {
+    id
+    name
+  }
+}
+
+mutation {
+  addDirector(name: "Director Test", movies: [1,2,3]) {
+    id
+    name
+  }
+}
+
+mutation {
+  addDirectorMovies(id: 7, movies: [2, 3, 4]) {
+    id
+    name
+    movies {
+      id
+      title
+    }
+  }
+}
+
+mutation {
+  deleteDirectorMovies(id: 7, movies: [2, 3, 4]) {
+    id
+    name
+    movies {
+      id
+      title
+    }
+  }
+}
+
+mutation {
+  updateDirector(id: 7, name: "Pepito") {
+    id
+    name
+  }
+}
+
+mutation {
+  deleteDirector(id: 7) {
+    id
+    name
+  }
+}

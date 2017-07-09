@@ -1,0 +1,38 @@
+query {
+  director(id: 1) {
+    name
+  }
+}
+
+query {
+  directors {
+    name
+  }
+}
+
+query {
+  directors(id: [3, 4]) {
+    name
+  }
+}
+
+query {
+  directors(id: [1]) {
+    name
+    movies {
+      title
+      description
+      poster_image
+      duration
+      rating
+      classification
+      year
+      writers {
+        name
+      }
+      actors {
+        name
+      }
+    }
+  }
+}

@@ -1,0 +1,64 @@
+mutation {
+  addMovie(
+    title: "Movie Test"
+    description: "Movie Test Description"
+    poster_image: "Movie Test Poster"
+    duration: 120
+    rating: 8.5
+    classification: "PG-13"
+    year: "2017"
+  ) {
+    title
+    description
+    poster_image
+    duration
+    rating
+    classification
+    year
+  }
+}
+
+mutation {
+  addMovie(
+    title: "Movie Test"
+    description: "Movie Test Description"
+    poster_image: "Movie Test Poster"
+    duration: 120
+    rating: 8.5
+    classification: "PG-13"
+    year: "2017"
+    directors: [1,2]
+    writers: [1,2]
+    actors: [1,2,3,4]
+    genres: [1,2,3]
+  ) {
+    title
+    description
+    poster_image
+    duration
+    rating
+    classification
+    year
+  }
+}
+
+mutation {
+  updateMovie(
+    id: 7
+    title: "Edited Movie Test"
+  ) {
+    title
+    description
+    poster_image
+    duration
+    rating
+    classification
+    year
+  }
+}
+
+mutation {
+  deleteMovie(id: 7) {
+    id
+  }
+}
