@@ -1,9 +1,11 @@
 import axios from 'axios';
 
+import * as MoviesService from './movies.service';
+import * as GenresService from './genres.service';
 import * as CommonService from './common.service';
 
 var addGenreMovies = (genreId, newMoviesIds) => {
-    return getMovieGenreRelationshipsByGenreId(genreId)
+    return _getMovieGenreRelationshipsByGenreId(genreId)
         .then((relationships) => {
             let persistedMovieIds = relationships
                 .map((movieGenrePair) => {
@@ -33,7 +35,7 @@ var addGenreMovies = (genreId, newMoviesIds) => {
 };
 
 var addMovieGenres = (movieId, newGenresIds) => {
-    return getMovieGenreRelationshipsByMovieId(movieId)
+    return _getMovieGenreRelationshipsByMovieId(movieId)
         .then((relationships) => {
             let persistedGenreIds = relationships
                 .map((movieGenrePair) => {
@@ -68,7 +70,7 @@ var _persistNewMovieGenreRelationships = (relationshipsToBePersisted) => {
 };
 
 var deleteGenreMovies = (genreId, moviesIds) => {
-    return getMovieGenreRelationshipsByGenreId(genreId)
+    return _getMovieGenreRelationshipsByGenreId(genreId)
         .then((relationships) => {
             let relationshipIdsToBeDeleted = relationships
                 .filter((movieGenrePair) => {
@@ -96,7 +98,27 @@ var _deleteMovieGenreRelationships = (relationshipIdsToBeDeleted) => {
     return CommonService.runAllAsyncRequests(asyncRequests, 'Deleting movie-genre relationships');
 };
 
-var getMovieGenreRelationshipsByMovieId = (movieId) => {
+var getMoviesDataByGenreId = (genreId) => {
+    return _getMovieGenreRelationshipsByGenreId(genreId)
+        .then((relationships) => {
+            return MoviesService.getRelatedMovies(relationships);
+        })
+        .catch((error) => {
+            return error;
+        });
+};
+
+var getGenresDataByMovieId = (movieId) => {
+    return _getMovieGenreRelationshipsByMovieId(movieId)
+        .then((relationships) => {
+            return GenresService.getGenresDataFromMovieRelationships(relationships);
+        })
+        .catch((error) => {
+            return error;
+        });
+};
+
+var _getMovieGenreRelationshipsByMovieId = (movieId) => {
     return new Promise((resolve, reject) => {
         axios
             .get(`http://localhost:3000/movies_genres?movieId=${movieId}`)
@@ -110,7 +132,7 @@ var getMovieGenreRelationshipsByMovieId = (movieId) => {
     });
 };
 
-var getMovieGenreRelationshipsByGenreId = (genreId) => {
+var _getMovieGenreRelationshipsByGenreId = (genreId) => {
     return new Promise((resolve, reject) => {
         axios
             .get(`http://localhost:3000/movies_genres?genreId=${genreId}`)
@@ -128,6 +150,6 @@ export {
     addGenreMovies,
     addMovieGenres,
     deleteGenreMovies,
-    getMovieGenreRelationshipsByMovieId,
-    getMovieGenreRelationshipsByGenreId
+    getMoviesDataByGenreId,
+    getGenresDataByMovieId
 };
