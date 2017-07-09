@@ -62,4 +62,48 @@ Empezaremos el taller con una breve presentación que nos permitirá dos cosas:
 1. Exponer los conceptos básicos de GraphQL con los que vamos a trabajar.
 2. Permitir a aquellas personas que no hayan podido configurar el entorno de trabajo, hacerlo antes de empezar a programar.
 
-Una vez concluída la presentación inicial, comenzaremos a trabajar en el código.
+Una vez concluída la presentación inicial, comenzaremos a trabajar en el código el cual, estará estructurado de la siguiente manera:
+
+![Project structure](img/project-structure.png)
+
+#### Directorio src
+
+Aquí será donde llevaremos a cabo todo el trabajo durante el taller.
+
+La actividad está pensada para que no sea necesario llevar a cabo ninguna configuración especial adicional o modificación del proyecto.
+
+#### Archivo server.js
+
+Este será el archivo principal de nuestro proyecto y será donde implementaremos un servidor basado en NodeJS, empleando `Express` como gestor de rutas.
+
+#### Directorio graphql
+
+En este directorio será donde implementaremos todo el código relacionado con GraphQL.
+
+#### Archivo schema.js
+
+Este archivo contendrá la relación de `queries` y `mutations` necesarias para que nuestro servidor GraphQL pueda recibir peticiones desde los clientes así como interactuar con los sistemas de persistencia de datos.
+
+#### Directorio models
+
+Aquí será donde implementaremos los archivos que definirán los `Object Types` que empleará nuestro servidor GraphQL.
+
+#### Directorio mutations
+
+Aquí implementaremos el código necesario para poder realizar modificaciones en nuestros datos, todo ello a través de las mutaciones.
+
+#### Directorio queries
+
+En este directorio estará el código que nos permitirá consultar la información almacenada en nuestro sistema de persistencia.
+
+#### Directorio services
+
+Dado que uno de los objetivos a la hora de implementar GraphQL en nuestros sistemas es proporcionar una capa de independencia entre las peticiones de datos que realizan nuestras aplicaciones y las vías por las cuales dichas peticiones son resueltas, en este directorio estará implementado todo el código necesario para interactuar con el servidor de pruebas con el que vamos a trabajar.
+
+**NOTA:** Debido a que esta parte del proyecto es independiente de GraphQL ya que sólo está definida por la manera en la que se accede a los datos, durante el taller no se va a modificar el contenido de los archivos alojados en este directorio.
+
+#### Directorio shared
+
+En este directorio encontraremos código compartido en múltiples puntos a los largo del proyecto.
+
+**NOTA:** Debido a que esta parte del proyecto es independiente de GraphQL, durante el taller no se va a modificar el contenido de los archivos alojados en este directorio.
