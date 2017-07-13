@@ -4,7 +4,7 @@ import * as MoviesService from './movies.service';
 import * as GenresService from './genres.service';
 import * as CommonService from './common.service';
 
-var addGenreMovies = (genreId, newMoviesIds) => {
+var addMoviesToGenre = (genreId, newMoviesIds) => {
     return _getMovieGenreRelationshipsByGenreId(genreId)
         .then((relationships) => {
             let persistedMovieIds = relationships
@@ -34,7 +34,7 @@ var addGenreMovies = (genreId, newMoviesIds) => {
         });
 };
 
-var addMovieGenres = (movieId, newGenresIds) => {
+var addGenresToMovie = (movieId, newGenresIds) => {
     return _getMovieGenreRelationshipsByMovieId(movieId)
         .then((relationships) => {
             let persistedGenreIds = relationships
@@ -147,8 +147,8 @@ var _getMovieGenreRelationshipsByGenreId = (genreId) => {
 };
 
 export {
-    addGenreMovies,
-    addMovieGenres,
+    addMoviesToGenre,
+    addGenresToMovie,
     deleteGenreMovies,
     getMoviesDataByGenreId,
     getGenresDataByMovieId
