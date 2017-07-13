@@ -4,7 +4,7 @@ import * as MoviesService from './movies.service';
 import * as DirectorsService from './directors.service';
 import * as CommonService from './common.service';
 
-var addDirectorMovies = (directorId, newMoviesIds) => {
+var addMoviesToDirector = (directorId, newMoviesIds) => {
     return _getMovieDirectorRelationshipsByDirectorId(directorId)
         .then((relationships) => {
             let persistedMovieIds = relationships
@@ -34,7 +34,7 @@ var addDirectorMovies = (directorId, newMoviesIds) => {
         });
 };
 
-var addMovieDirectors = (movieId, directorsIds) => {
+var addDirectorsToMovie = (movieId, directorsIds) => {
     return _getMovieDirectorRelationshipsByMovieId(movieId)
         .then((relationships) => {
             let persistedDirectorIds = relationships
@@ -143,8 +143,8 @@ var _getMovieDirectorRelationshipsByDirectorId = (directorId) => {
 };
 
 export {
-    addDirectorMovies,
-    addMovieDirectors,
+    addMoviesToDirector,
+    addDirectorsToMovie,
     deleteDirectorMovies,
     getMoviesDataByDirectorId,
     getDirectorsDataByMovieId
