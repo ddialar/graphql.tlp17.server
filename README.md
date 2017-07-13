@@ -57,31 +57,67 @@ Si todo ha ido bien, ya tendrás listo en entorno necesario para poder trabajar 
 
 ## Organización del taller
 
-Empezaremos el taller con una breve presentación que nos permitirá dos cosas:
+Con el servidor de datos, basado en `json-server`, correctamente iniciado y funcionando, empezaremos el taller con una breve presentación que nos permitirá dos cosas:
 
 1. Exponer los conceptos básicos de GraphQL con los que vamos a trabajar.
 2. Permitir a aquellas personas que no hayan podido configurar el entorno de trabajo, hacerlo antes de empezar a programar.
 
 Una vez concluída la presentación inicial, comenzaremos a trabajar en el código.
 
-Para asegurar el correcto avance de todas las personas asistentes al taller, el repositorio está organizado en ramas de Git. Estas ramas estarán identificadas como `rama-n` donde `n` indicará el número correspondiente a la fase del proyecto en la que vamos a estar trabajando.
+Para asegurar el correcto avance de todas las personas asistentes al taller, el repositorio está organizado en ramas de Git. Estas ramas estarán identificadas como `paso-n` donde `n` indicará el número correspondiente a la fase del proyecto en la que vamos a estar trabajando.
 
 De esta forma, a medida que vayamos avanzando en el proyecto, iremos guardando los cambios que hayamos realizado
 
 ```sh
-$ git add -A
+$ git add .
 $ git commit -m "el comentario que tu quieras"
 ```
 
 y a continuación, cambiaremos de rama 
 
 ```sh
-$ git checkout rama-n
+$ git checkout paso-n
 ```
 
 de manera que al comienzo de cada nueva fase del taller, todos y todas partamos desde el mismo punto.
 
-Para concluir, el proyecto estará estructurado de la siguiente manera:
+Una vez dicho esto, lo que vamos a realizar en cada una de las ramas será lo siguiente:
+
+### Rama master
+
+Esta será la rama de inicio y con su contenido, veremos la distribución inicial del proyecto, contenidos de ficheros, instalación de paquetes necesarios mediante `NPM` así como arrancar el servidor por primera vez y verificar su correcto funcionamiento.
+
+### Rama paso-1
+
+Aquí empezaremos a trabajar con Objetos Tipo así como viendo las principales funcionalidades que debemos implementar a la hora de realizar consultas.
+
+### Rama paso-2
+
+Ahora profundizaremos un poco más en el trabajo realizado previamente, realizando consulta a través de campos específicos.
+
+### Rama paso-3
+
+Es hora de que juegues un poco y por esa razón, además de lo que has trabajado hasta el momento, dispondrás de un pequeño periodo de tiempo en el cual, basándote en el código realizado en los pasos anteriores, deberán hacer lo mismo, pero para otra de las entidades de la base de datos.
+
+No te preocupes ni te agobies si no lo consigues. Estamos aprendiendo y eso es más importante que completar el ejercicio. En cualquier caso, el proceso será explicado paso a paso, una vez se haya cumplido el tiempo.
+
+### Rama paso-4
+
+Después de haber visto consultas de entidades fundamentales, es hora de empezar a incluir campos de consultas formados por otros objetos tipo. Aquí empezaremos a vislumbrar el gran potencial que tiene GraphQL.
+
+### Rama paso-5
+
+Continuamos trabajando con objetos tipo dentro de consultas pero en este paso, vamos a darle un poco más de complejidad. De nuevo, no te preocupes. Todo será explicado paso por paso.
+
+### Rama paso-6
+
+Ahora que ya tenemos las consultas controladas, es el momento de meternos con las mutaciones. Por esa razón, en esta rama empezaremos a crear, modificar y eliminar datos desde GraphQL.
+
+### Rama paso-7
+
+Esta es la última fase de nuestro taller y aquí se mostrará el proyecto totalmente completo, aprovechando para explicar y llamar la atención sobre funcionalidades más complejas.
+
+Para concluir, aunque el día del taller lo explicaremos con más detalle, el proyecto estará estructurado de la siguiente manera:
 
 ![Project structure](img/project-structure.png)
 
