@@ -1,24 +1,19 @@
 query {
-  writer(id: 1) {
-    name
-  }
-}
-
-query {
-  writers {
+  allWriters {
     id
     name
   }
 }
 
 query {
-  writers(id: [12, 13]) {
+  writersById(id: [12, 13]) {
+    id
     name
   }
 }
 
 query {
-  writers(id: [2]) {
+  writersById(id: [2]) {
     name
     movies {
       title

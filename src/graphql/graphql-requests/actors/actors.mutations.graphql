@@ -15,7 +15,7 @@ mutation {
 }
 
 mutation {
-  addActorMovies(id: 1, movies: [2, 3, 4]) {
+  addMoviesToActor(id: 1, movies: [2, 3, 4]) {
     id
     name
     movies {
