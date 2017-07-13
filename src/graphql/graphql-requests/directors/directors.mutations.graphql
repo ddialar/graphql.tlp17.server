@@ -13,7 +13,7 @@ mutation {
 }
 
 mutation {
-  addDirectorMovies(id: 7, movies: [2, 3, 4]) {
+  addMoviesToDirector(id: 7, movies: [2, 3, 4]) {
     id
     name
     movies {
