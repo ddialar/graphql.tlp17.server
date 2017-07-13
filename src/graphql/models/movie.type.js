@@ -6,13 +6,14 @@ import {
     GraphQLObjectType,
     GraphQLInt,
     GraphQLFloat,
-    GraphQLString
+    GraphQLString,
+    GraphQLList
 } from 'graphql';
 
-// Tarea 1 - Importar el servicio 'MoviesDirectorsService'
-// Tarea 2 - Importar el servicio 'MoviesWritersService'
-// Tarea 3 - Importar el servicio 'MoviesActorsService'
-// Tarea 4 - Importar el servicio 'MoviesGenresService'
+import * as MoviesDirectorsService from '../services/movies-directors.service';
+import * as MoviesWritersService from '../services/movies-writers.service';
+import * as MoviesActorsService from '../services/movies-actors.service';
+import * as MoviesGenresService from '../services/movies-genres.service';
 
 var MovieType = new GraphQLObjectType({
     name: 'Movie',
@@ -24,17 +25,47 @@ var MovieType = new GraphQLObjectType({
         duration: { type: GraphQLInt },
         rating: { type: GraphQLFloat },
         classification: { type: GraphQLString },
-        year: { type: GraphQLString }
-        // Tarea 1 - Añadir el campo 'directors' y devolver la información correspondiente.
-        // Tarea 2 - Añadir el campo 'writers' y devolver la información correspondiente.
-        // Tarea 3 - Añadir el campo 'actors' y devolver la información correspondiente.
-        // Tarea 4 - Añadir el campo 'genres' y devolver la información correspondiente.
+        year: { type: GraphQLString },
+        directors: {
+            type: new GraphQLList(DirectorType),
+            resolve: (parentValues, args) => {
+                return MoviesDirectorsService.getDirectorsDataByMovieId(parentValues.id);
+            }
+        },
+        writers: {
+            type: new GraphQLList(WriterType),
+            resolve: (parentValues, args) => {
+                return MoviesWritersService.getWritersDataByMovieId(parentValues.id);
+            }
+        },
+        actors: {
+            type: new GraphQLList(ActorType),
+            resolve: (parentValues, args) => {
+                return MoviesActorsService.getActorsDataByMovieId(parentValues.id);
+            }
+        },
+        genres: {
+            type: new GraphQLList(GenreType),
+            resolve: (parentValues, args) => {
+                return MoviesGenresService.getGenresDataByMovieId(parentValues.id);
+            }
+        },
+        genresAsArray: {
+            type: new GraphQLList(GraphQLString),
+            resolve: (parentValues, args) => {
+                return MoviesGenresService
+                    .getGenresDataByMovieId(parentValues.id)
+                    .then((genres) => {
+                        return genres.map(genre => genre.name);
+                    });
+            }
+        }
     })
 });
 
 export default MovieType;
 
-// Tarea 1 - Importa el objeto tipo 'DirectorType'.
-// Tarea 2 - Importa el objeto tipo 'WriterType'.
-// Tarea 3 - Importa el objeto tipo 'ActorType'.
-// Tarea 4 - Importa el objeto tipo 'GenreType'.
+import DirectorType from './director.type';
+import WriterType from './writer.type';
+import ActorType from './actor.type';
+import GenreType from './genre.type';
